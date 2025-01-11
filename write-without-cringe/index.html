@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Пиши без кринжа</title>
 
   <!-- Шрифт Inter (Google Fonts) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
-    /* ===== СБРОС СТИЛЕЙ ===== */
+    /* ===== Reset ===== */
     *, *::before, *::after {
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     html, body {
@@ -26,6 +26,8 @@
       background: #fff;
       line-height: 1.4;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
     }
     img {
       display: block;
@@ -37,132 +39,164 @@
       color: inherit;
     }
 
-    /* ===== ПЕРЕМЕННЫЕ ===== */
+    /* ===== Variables ===== */
     :root {
-      --mainWidth: 900px;     /* Максимальная ширина контента */
-      --sidePad: 10px;        /* Горизонтальные отступы */
-      --sectionGap: 100px;    /* Между секциями */
-      --headerBottom: 50px;   /* Отступ снизу от шапки */
+      --mainWidth: 1000px;  /* Осн. ширина контейнера */
+      --sidePad: 10px;
+      --sectionGap: 100px;
+      --headerBottom: 50px;
     }
 
-    /* ===== ШАПКА (header) ===== */
+    /* ===== Header ===== */
     header.siteHeader {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: #fff;
-      /* Вертикальные отступы */
-      padding-top: 10px;
-      padding-bottom: 10px;
-      /* Горизонтальные отступы по 10px всегда */
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    .profileInfo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .profileImage {
-      width: 35px; 
-      height: 35px; 
-      border-radius: 50%;
-    }
-    .profileName {
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 35px;
-    }
-    @media (max-width: 920px) {
-      .profileName {
-        font-size: 20px;
-        line-height: 24px;
-      }
-    }
-    .telegramLink {
-      width: 43px; 
-      height: 35px; 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center;
-    }
-    .telegramLink:hover svg path {
-      fill: #0088cc; 
+      padding: 10px; /* Сверху/снизу/слева/справа = 10px */
     }
 
-    /* ===== ОСНОВНОЙ КОНТЕНТ (main) ===== */
+    /* Левая ссылка (иконка + текст) */
+    .headerLeftLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+    .headerLeftLink:hover {
+      color: #6A00FF;
+    }
+    .headerLeftLink svg {
+      width: 35px;
+      height: 35px;
+      transition: fill 0.2s ease;
+    }
+    .headerLeftText {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    /* Правая ссылка (Телеграм) */
+    .headerRightLink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 43px;
+      height: 35px;
+      transition: fill 0.2s ease;
+    }
+    .headerRightLink:hover svg path {
+      fill: #6A00FF;
+    }
+
+    /* ===== Main ===== */
     main.siteMain {
       width: 100%;
       margin: 0 auto;
-      margin-top: var(--headerBottom); /* 50px */
+      margin-top: var(--headerBottom);
       margin-bottom: 100px;
     }
     .mainContainer {
       width: 100%;
       max-width: var(--mainWidth);
       margin: 0 auto;
-      padding: 0 var(--sidePad);
+      padding-left: var(--sidePad);
+      padding-right: var(--sidePad);
     }
 
-    /* ===== ГЕРОЙ-БЛОК ===== */
+    /* Общий класс для текстовых блоков (справа 100px, при адаптиве => 10px) */
+    .padRight100 {
+      padding-right: 100px;
+    }
+    @media (max-width: 1020px) {
+      .padRight100 {
+        padding-right: 10px; /* (2) вместо 30px => 10px */
+      }
+    }
+
+    /* ===== Hero ===== */
     .heroSection {
       display: flex;
       flex-direction: column;
-      gap: 20px;
     }
-    .heroTitleWrap {
-      display: flex; 
-      align-items: center; 
-      gap: 10px; 
-      align-self: stretch;
-    }
-    /* h1 без неразрывных пробелов */
-    h1.heroMainTitle {
+    .heroTitle {
       color: #000;
       font-weight: 900;
-      font-size: 156px;
-      line-height: 122px;
+      font-size: 120px;
+      line-height: 80%;
       letter-spacing: -6px;
+      margin-bottom: 20px;
     }
-    @media (max-width: 920px) {
-      h1.heroMainTitle {
+    @media (max-width: 1020px) {
+      .heroTitle {
         font-size: 90px;
         line-height: 70px;
         letter-spacing: -3px;
       }
     }
-    h2.heroSubtitle {
+
+    .heroSubtitle {
       color: #000;
       font-size: 54px;
       font-weight: 700;
-      line-height: 45px; 
+      line-height: 45px;
       letter-spacing: -1.6px;
+      margin-bottom: 50px;
     }
-    @media (max-width: 920px) {
-      h2.heroSubtitle {
+    @media (max-width: 1020px) {
+      .heroSubtitle {
         font-size: 32px;
-        line-height: 28px;
-        letter-spacing: -1px;
-      }
-    }
-    .heroText {
-      color: #000;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 35px;
-    }
-    .heroText.last {
-      margin-bottom: var(--sectionGap);
-    }
-    @media (max-width: 920px) {
-      .heroText {
-        font-size: 20px;
         line-height: 28px;
       }
     }
 
-    /* ===== СЕКЦИИ (Статьи) ===== */
+    .heroAuthorBlock {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .heroAuthorImg {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    /* (1) "Анна Ревенкова, учитель русского" => 28px, жирный, при адаптиве =>20px жирный */
+    .heroAuthorText {
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 700;
+    }
+    @media (max-width: 1020px) {
+      .heroAuthorText {
+        font-size: 20px; /* (1) адаптив => 20px */
+        line-height: 23px;
+      }
+    }
+
+    /* Текст геро-блока 32->28, line-height:32 => адаптив =>20, line-height:26 */
+    .heroText {
+      color: #000;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+    .heroText:not(:last-child) {
+      margin-bottom: 10px; /* Расстояние 10px между абзацами */
+    }
+    .heroText.last {
+      margin-bottom: var(--sectionGap);
+    }
+    @media (max-width: 1020px) {
+      .heroText {
+        font-size: 20px;
+        line-height: 23px;
+      }
+    }
+
+    /* ===== Секции (Articles) ===== */
     .sectionBlock {
       display: flex;
       flex-direction: column;
@@ -172,81 +206,79 @@
       width: 100%;
       margin: 0 auto;
     }
-    /* при <=920px на всю ширину экрана */
-    @media (max-width: 920px) {
-      .sectionImage {
-        width: 100%;
-      }
-    }
+    /* При <=500px меняем src => <picture><source...> */
     .sectionTitle {
       color: #000;
       font-size: 54px;
       font-weight: 700;
       line-height: 45px;
       letter-spacing: -1.6px;
-      margin-top: 40px; /* картинка->заголовок */
+      margin-top: 40px;
     }
-    .sectionText {
-      color: #000;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 35px;
-      margin-top: 20px;   /* заголовок->текст */
-      margin-bottom: 30px;/* текст->примеры */
-    }
-    /* на <=920px меняем расстояния */
-    @media (max-width: 920px) {
+    @media (max-width: 1020px) {
       .sectionTitle {
-        margin-top: 30px; /* вместо 40px */
+        margin-top: 30px;
         font-size: 32px;
-        line-height: 28px;
-        letter-spacing: -1px;
-      }
-      .sectionText {
-        margin-top: 10px;    /* вместо 20px */
-        margin-bottom: 20px; /* вместо 30px */
-        font-size: 20px;
         line-height: 28px;
       }
     }
 
-    /* ===== ПРИМЕРЫ (две колонки) ===== */
-    .examplesWrapper {
-      display: flex; 
-      flex-direction: row; 
-      gap: 30px; /* расстояние между колонками */
+    /* 32->28 => line-height ~32 */
+    .sectionText {
+      color: #000;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-bottom: 30px;
     }
+    @media (max-width: 1020px) {
+      .sectionText {
+        font-size: 20px;
+        line-height: 23px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* ===== Примеры (две колонки) ===== */
+    .examplesWrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+    }
+    /* 24->20 => examples */
     .exampleSide {
       flex: 1 1 0;
       display: flex;
       flex-direction: column;
-      font-size: 24px; 
+      font-size: 20px;
       line-height: 26px;
     }
     .exampleSideTitle {
-      margin-bottom: 0; 
-      font-size: 24px;
+      margin-bottom: 0;
+      font-size: 20px;
       font-weight: 700;
       line-height: 26px;
     }
     .cringeColor {
-      color: #FF0004; 
+      color: #FF0004;
     }
     .likeColor {
-      color: #5DCF00; 
+      color: #5DCF00;
     }
     .exampleList {
-      list-style: none; 
-      display: flex; 
-      flex-direction: column; 
+      list-style: none;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      margin: 0; 
+      margin: 0;
       padding: 0;
     }
-    @media (max-width: 920px) {
+    @media (max-width: 1020px) {
       .exampleSide {
-        font-size: 16px; 
-        line-height: 22px;
+        font-size: 16px;
+        line-height: 19px;
       }
       .exampleSideTitle {
         font-size: 16px;
@@ -254,7 +286,7 @@
       }
     }
 
-    /* ===== ФУТЕР (чёрный фон) ===== */
+    /* ===== Футер ===== */
     footer.siteFooter {
       width: 100%;
       background: #000;
@@ -268,7 +300,8 @@
       width: 100%;
       max-width: var(--mainWidth);
       margin: 0 auto;
-      padding: 0 var(--sidePad);
+      padding-left: var(--sidePad);
+      padding-right: var(--sidePad);
       display: flex;
       flex-direction: column;
       gap: 40px;
@@ -276,7 +309,6 @@
     .footerTextBlock {
       display: flex;
       flex-direction: column;
-      gap: 20px;
       color: #fff;
     }
     .footerTitle {
@@ -285,22 +317,25 @@
       line-height: 45px;
       letter-spacing: -1.6px;
       color: #fff;
+      margin-bottom: 20px;
     }
+    /* 32->28 => line-height:32 => margin-bottom:50px => pic */
     .footerParagraph {
-      font-size: 32px;
-      line-height: 35px;
+      font-size: 28px;
+      line-height: 32px;
       color: #fff;
       font-weight: 400;
+      margin-bottom: 50px;
     }
-    @media (max-width: 920px) {
+    @media (max-width: 1020px) {
       .footerTitle {
         font-size: 32px;
         line-height: 28px;
-        letter-spacing: -1px;
       }
       .footerParagraph {
         font-size: 20px;
-        line-height: 28px;
+        line-height: 26px;
+        margin-bottom: 30px;
       }
     }
     .footerImage {
@@ -336,8 +371,17 @@
       font-weight: 400;
       line-height: 26px;
     }
-    @media (max-width: 920px) {
-      .footerCaption, .infoLabel, .infoText {
+    .infoText a {
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+    .infoText a:hover {
+      color: #6A00FF;
+    }
+    @media (max-width: 1020px) {
+      .footerCaption,
+      .infoLabel,
+      .infoText {
         font-size: 16px;
         line-height: 22px;
       }
@@ -346,19 +390,17 @@
 </head>
 <body>
 
-<!-- ШАПКА -->
 <header class="siteHeader">
-  <section class="profileInfo">
-    <img class="profileImage" src="files/01.png" alt="Анна">
-    <h2 class="profileName">Анна&nbsp;Ревенкова</h2>
-  </section>
-  <a 
-    class="telegramLink" 
-    href="https://t.me/an_reva"
-    target="_blank"
-    rel="noopener"
-    aria-label="Телеграм автора an_reva"
-  >
+  <!-- ЛЕВАЯ ССЫЛКА: иконка + текст "Другие статьи" -->
+  <a class="headerLeftLink" href="../index.html">
+    <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8.36719 19.6875L20.6172 31.9375L17.5 35L0 17.5L17.5 0L20.6172 3.0625L8.36719 15.3125H35V19.6875H8.36719Z" fill="#1C1B1F"/>
+    </svg>
+    <span class="headerLeftText">Другие статьи</span>
+  </a>
+
+  <!-- ПРАВАЯ ССЫЛКА: Телеграм -->
+  <a class="headerRightLink" href="https://t.me/an_reva" target="_blank" rel="noopener">
     <svg width="43" height="35" viewBox="0 0 43 35" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd"
         d="M3.66895 15.0673C15.0058 10.128 22.5656 6.87167 26.3481 5.29839C37.1479 0.806355 39.3921 0.0260412 40.8547 0.000274728C41.1764 -0.00539232 41.8958 0.0743353 42.3617 0.45241C42.7551 0.771649 42.8634 1.2029 42.9152 1.50557C42.967 1.80824 43.0315 2.49774 42.9802 3.0365C42.3949 9.18575 39.8626 24.1084 38.5743 30.9956C38.0291 33.9099 36.9557 34.887 35.9166 34.9827C33.6582 35.1905 31.9433 33.4902 29.756 32.0564C26.3333 29.8127 24.3997 28.416 21.0773 26.2267C17.2377 23.6965 19.7268 22.3058 21.9149 20.0331C22.4876 19.4383 32.4379 10.3877 32.6305 9.56669C32.6546 9.46401 32.6769 9.08125 32.4496 8.87914C32.2222 8.67703 31.8866 8.74615 31.6444 8.80111C31.3011 8.87903 25.8332 12.4931 15.2408 19.6433C13.6888 20.709 12.283 21.2283 11.0235 21.2011C9.63493 21.1711 6.96395 20.416 4.97835 19.7705C2.54293 18.9789 0.607307 18.5603 0.775856 17.2158C0.863647 16.5155 1.82801 15.7994 3.66895 15.0673Z"
@@ -368,39 +410,46 @@
   </a>
 </header>
 
-<!-- MAIN -->
 <main class="siteMain">
   <div class="mainContainer">
-
-    <!-- ГЕРОЙ-БЛОК -->
+    <!-- Герой-блок -->
     <article class="heroSection">
-      <div class="heroTitleWrap">
-        <h1 class="heroMainTitle">Пиши без кринжа</h1>
+      <!-- (3) br после "Пиши" -->
+      <h1 class="heroTitle">Пиши<br/> без кринжа</h1>
+      <h2 class="heroSubtitle">Ошибки, которые&nbsp;мы не&nbsp;замечаем в&nbsp;чатах и&nbsp;соцсетях&nbsp;— а&nbsp;зря</h2>
+
+      <div class="heroAuthorBlock padRight100">
+        <img class="heroAuthorImg" src="files/01.png" alt="Аватарка">
+        <p class="heroAuthorText">Анна Ревенкова, учитель русского</p>
       </div>
-      <h2 class="heroSubtitle">Ошибки, которые&nbsp;мы не&nbsp;замечаем в&nbsp;чатах и&nbsp;соцсетях — а&nbsp;зря</h2>
-      <p class="heroText">
-        Раньше я&nbsp;была учителем русского языка. Учила писать идеально: никаких сокращений,
-        только строгие правила. Теперь я&nbsp;смотрю на&nbsp;язык иначе. Когда вижу в&nbsp;чатах: ща, лол, угар&nbsp;—
-        понимаю, что&nbsp;язык живёт и&nbsp;меняется. Сокращения и&nbsp;сленг упрощают переписку и&nbsp;помогают быстро шутить.
-        Но&nbsp;пара ошибок: вообщем, неумею — и&nbsp;собеседник уже сворачивает диалог.
+
+      <p class="heroText padRight100">
+        Когда вижу в&nbsp;чатах: «ща», «лол», «угар», — понимаю, что&nbsp;язык живёт и&nbsp;меняется.
+        Сокращения и&nbsp;сленг упрощают переписку и&nbsp;помогают быстро шутить. Но&nbsp;пара ошибок:
+        «вообщем», «неумею» — и&nbsp;собеседник уже сворачивает диалог.
       </p>
-      <p class="heroText last">
+      <p class="heroText padRight100 last">
         В&nbsp;этой статье я&nbsp;собрала ошибки, которые&nbsp;вы встречали в&nbsp;рабочих и&nbsp;неформальных чатах.
         Вместе разберёмся, как писать чётко, чтобы&nbsp;не&nbsp;портить отношения с&nbsp;коллегами и&nbsp;друзьями.
         В&nbsp;конце каждой темы тест, чтоб наверняка.
       </p>
     </article>
 
-    <!-- 1. Вообщем -->
+    <!-- 1. «Вообщем» -->
     <article class="sectionBlock">
-      <img class="sectionImage" src="files/02.svg" alt="Вообщем">
-      <h3 class="sectionTitle">«Вообщем» — это кринж</h3>
-      <p class="sectionText">
-        Старый любимчик учителей русского языка. В&nbsp;интернете все уже давно посмеялись
-        над&nbsp;этим словом, но&nbsp;продолжают писать неправильно: вообщем и&nbsp;вобщем. Нет&nbsp;таких слов,
-        только в&nbsp;общем и&nbsp;вообще.
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/02-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/02.svg" alt="Вообщем">
+      </picture>
+      <h3 class="sectionTitle padRight100">«Вообщем»</h3>
+      <div class="padRight100">
+        <p class="sectionText">
+          Старый любимчик учителей русского языка. В&nbsp;интернете все уже давно посмеялись
+          над этими словами, но продолжают писать неправильно: «вообщем» и «вобщем». Нет таких слов,
+          только «в&nbsp;общем» и «вообще».
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -409,7 +458,7 @@
           </ul>
         </div>
         <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Топ</h4>
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
           <ul class="exampleList">
             <li>В&nbsp;общем, я&nbsp;ничего не&nbsp;понял, но&nbsp;это тоже результат.</li>
             <li>Вообще, смысл жизни — это сидеть в&nbsp;чате и&nbsp;кидать мемы.</li>
@@ -418,17 +467,22 @@
       </div>
     </article>
 
-    <!-- 2. Надо подкачаца -->
+    <!-- 2. «Прокачатся» -->
     <article class="sectionBlock">
-      <img class="sectionImage" src="files/03.svg" alt="Надо подкачаца">
-      <h3 class="sectionTitle">«Надо подкачаца»</h3>
-      <p class="sectionText">
-        Написание ТСЯ и&nbsp;ТЬСЯ в&nbsp;глаголах — из&nbsp;вечных ловушек русского языка. Учитывая нашу манеру
-        писать быстро, да&nbsp;ещё со&nbsp;сленгом, появляются смеятся или даже смеяца. Помните правило:
-        если глагол отвечает на&nbsp;вопрос что&nbsp;делать?, пишите ТЬСЯ: целоваться.
-        Если глагол отвечает на&nbsp;вопрос что&nbsp;делает?, пишите ТСЯ: целуется.
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/03-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/03.svg" alt="Прокачатся">
+      </picture>
+      <h3 class="sectionTitle padRight100">«Прокачатся»</h3>
+      <div class="padRight100">
+        <p class="sectionText">
+          Написание ТСЯ и&nbsp;ТЬСЯ в&nbsp;глаголах — из вечных ловушек русского языка.
+          Учитывая нашу манеру писать быстро, да&nbsp;ещё со&nbsp;сленгом, появляются «смеятся» или даже «смеяца».
+          Помните правило: если глагол отвечает на вопрос «что&nbsp;делать?», пишите ТЬСЯ: целоваться.
+          Если глагол отвечает на вопрос «что&nbsp;делает?», пишите ТСЯ: целуется.
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -446,16 +500,21 @@
       </div>
     </article>
 
-    <!-- 3. Не-че-го не говори! -->
+    <!-- 3. «Нечегó» -->
     <article class="sectionBlock">
-      <img class="sectionImage" src="files/04.svg" alt="Не-че-го не говори!">
-      <h3 class="sectionTitle">«Не-че-го не&nbsp;говори!»</h3>
-      <p class="sectionText">
-        Вы&nbsp;наверняка видели фразы вроде я&nbsp;ничего не&nbsp;знаю, или ещё хуже не&nbsp;чего. Такие ошибки
-        действительно появляются от&nbsp;незнания. Но&nbsp;правило простое: под&nbsp;ударением пишите букву Е: нéчего,
-        а&nbsp;без ударения — И: ничего. И&nbsp;всегда слитно.
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/04-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/04.svg" alt="Нечегó">
+      </picture>
+      <h3 class="sectionTitle padRight100">«Нечегó»</h3>
+      <div class="padRight100">
+        <p class="sectionText">
+          Вы наверняка видели фразы вроде «я&nbsp;нечего не&nbsp;знаю», или ещё хуже «не&nbsp;чего».
+          Такие ошибки действительно появляются от незнания. Но правило простое: под ударением
+          пишите букву Е: нéчего, а без ударения — И: ничегó. И всегда слитно.
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -466,7 +525,7 @@
           </ul>
         </div>
         <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Разнос</h4>
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
           <ul class="exampleList">
             <li>И&nbsp;вдруг! Некто появился на&nbsp;пороге.</li>
             <li>Ничей комментарий уже не&nbsp;мог остановить его.</li>
@@ -475,23 +534,32 @@
       </div>
     </article>
 
-    <!-- 4. Чё-та про пол- -->
+    <!-- 4. «Пол ночи» -->
     <article class="sectionBlock">
-      <img class="sectionImage" src="files/05.svg" alt="Чё-та про пол-">
-      <h3 class="sectionTitle">«Чё-та про пол-»</h3>
-      <p class="sectionText">
-        Полчетверти болели и&nbsp;пропустили эту тему? Запоминайте мнемоническое правило пол-Юли.
-        Юля — это аббревиатура слов, которые пишутся с&nbsp;ПОЛ через дефис:
-      </p>
-      <p class="sectionText" style="margin-top:0">
-        Ю&nbsp;— слова, которые начинаются с&nbsp;заглавной буквы: пол-Крыма, пол-Азии.<br/>
-        Л&nbsp;— слова, начинающиеся на&nbsp;Л: пол-литра, пол-лайма.<br/>
-        И&nbsp;— слова, начинающиеся на&nbsp;гласную букву: пол-инстаграмма (запрещённая в&nbsp;РФ&nbsp;сеть!), пол-августа.
-      </p>
-      <p class="sectionText" style="margin-bottom:30px">
-        Остальные слова пишите слитно: полночи, полчаса.
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/05-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/05.svg" alt="Пол ночи">
+      </picture>
+      <h3 class="sectionTitle padRight100">«Пол ночи»</h3>
+      <div class="padRight100">
+        <p class="sectionText" style="margin-bottom:0">
+          Полчетверти болели и&nbsp;пропустили эту тему? Запоминайте мнемоническое правило «пол-Юли».
+          Юля — это аббревиатура слов, которые пишутся с&nbsp;ПОЛ через дефис:
+        </p>
+        <p class="sectionText" style="margin-top:0; margin-bottom:0; padding-left:30px">
+          Ю&nbsp;— слова, которые начинаются с&nbsp;заглавной буквы: пол-Крыма, пол-Азии;
+        </p>
+        <p class="sectionText" style="margin-top:10px; margin-bottom:0; padding-left:30px">
+          Л&nbsp;— слова, начинающиеся на&nbsp;Л: пол-литра, пол-лайма;
+        </p>
+        <p class="sectionText" style="margin-top:10px; margin-bottom:20px; padding-left:30px">
+          И&nbsp;— слова, начинающиеся на&nbsp;гласную букву: пол-ананаса, пол-августа.
+        </p>
+        <p class="sectionText" style="margin-top:0">
+          Остальные слова пишите слитно: полночи, полчаса.
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -501,7 +569,7 @@
           </ul>
         </div>
         <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Амазинг</h4>
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
           <ul class="exampleList">
             <li>Полдня искал вдохновение, а&nbsp;потом решил ничего не&nbsp;делать.</li>
             <li>Пол-интернета уже носит эти странные кроксы, а&nbsp;я&nbsp;всё ещё пытаюсь понять, зачем.</li>
@@ -511,17 +579,22 @@
       </div>
     </article>
 
-    <!-- 5. Чтобы без что бы! -->
+    <!-- 5. «Чтобы» -->
     <article class="sectionBlock">
-      <img class="sectionImage" src="files/06.svg" alt="Чтобы без что бы!">
-      <h3 class="sectionTitle">«Чтобы без что&nbsp;бы!»</h3>
-      <p class="sectionText">
-        Чтобы или что&nbsp;бы — слетает фокус у&nbsp;многих: когда слитно, а&nbsp;когда раздельно?
-        Чтобы ваши сообщения выглядели топово, запомните: пишите слитно, когда слово выражает цель
-        или причину: Посмотрю этот фильм, чтобы выплакаться. Пишите раздельно для усиления вопроса.
-        Частица БЫ опускается без&nbsp;потери смысла: Что&nbsp;бы такого посмотреть?
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/06-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/06.svg" alt="Чтобы">
+      </picture>
+      <h3 class="sectionTitle padRight100">«Чтобы»</h3>
+      <div class="padRight100">
+        <p class="sectionText">
+          Слетает фокус у&nbsp;многих: когда слитно, а&nbsp;когда раздельно? Чтобы ваши сообщения
+          выглядели топово, запомните: пишите слитно, когда слово выражает цель или причину:
+          Посмотрю этот фильм, чтобы выплакаться. Пишите раздельно для усиления вопроса:
+          Что&nbsp;бы такого посмотреть? Частица БЫ опускается без&nbsp;потери смысла.
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -531,7 +604,7 @@
           </ul>
         </div>
         <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Бест</h4>
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
           <ul class="exampleList">
             <li>Я&nbsp;заказал продуктов, чтобы приготовить обед.</li>
             <li>Что&nbsp;бы вы&nbsp;хотели на&nbsp;ужин?</li>
@@ -541,15 +614,21 @@
       </div>
     </article>
 
-    <!-- 6. По едем по едим -->
+    <!-- 6. «По ехать» -->
     <article class="sectionBlock" style="margin-bottom:0">
-      <img class="sectionImage" src="files/07.svg" alt="По едем по едим">
-      <h3 class="sectionTitle">«По едем по&nbsp;едим»</h3>
-      <p class="sectionText">
-        Такой ошибкой вы&nbsp;открываете портал в&nbsp;ад. Не&nbsp;грешите и&nbsp;приставку ПО
-        с&nbsp;глаголами всегда пишите слитно, а&nbsp;раздельное написание вроде по&nbsp;смотреть — это смертельная ошибка.
-      </p>
-      <div class="examplesWrapper">
+      <picture>
+        <source srcset="files/07-mobile.svg" media="(max-width: 500px)">
+        <img class="sectionImage" src="files/07.svg" alt="По ехать">
+      </picture>
+      <h3 class="sectionTitle padRight100">«По ехать»</h3>
+      <div class="padRight100">
+        <p class="sectionText">
+          Такой ошибкой вы&nbsp;открываете портал в&nbsp;ад. Не&nbsp;грешите и&nbsp;приставку ПО
+          с&nbsp;глаголами всегда пишите слитно, а&nbsp;раздельное написание вроде «по&nbsp;смотреть»
+          — это смертельная ошибка.
+        </p>
+      </div>
+      <div class="examplesWrapper padRight100">
         <div class="exampleSide">
           <h4 class="exampleSideTitle cringeColor">Кринж</h4>
           <ul class="exampleList">
@@ -559,11 +638,11 @@
           </ul>
         </div>
         <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">5+</h4>
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
           <ul class="exampleList">
             <li>Решил поговорить с&nbsp;ней, но&nbsp;она всё равно прочитала сообщение и&nbsp;не&nbsp;ответила.</li>
             <li>Надо подумать, но&nbsp;что там думать?</li>
-            <li>Сегодня нужно по&nbsp;работать, а&nbsp;завтра просто мемы.</li>
+            <li>Сегодня нужно поработать, а&nbsp;завтра просто мемы.</li>
           </ul>
         </div>
       </div>
@@ -572,19 +651,20 @@
   </div>
 </main>
 
-<!-- ФУТЕР -->
 <footer class="siteFooter">
   <div class="footerContainer">
     <div class="footerTextBlock">
       <h2 class="footerTitle">Помните, главное — уместность</h2>
       <p class="footerParagraph">
         Грамотность — это уважение к&nbsp;собеседнику и&nbsp;показатель вашей компетентности.
-        Сленг — инструмент, чтобы оставаться на&nbsp;волне хайпа и&nbsp;мемов. Не&nbsp;бойтесь использовать мемы,
-        но&nbsp;не&nbsp;забывайте о&nbsp;правилах. Помните об&nbsp;уместности и&nbsp;не&nbsp;допускайте ошибок.
+        Сленг — инструмент, чтобы оставаться на&nbsp;волне хайпа и&nbsp;мемов. Не&nbsp;бойтесь
+        использовать мемы, но&nbsp;не&nbsp;забывайте о&nbsp;правилах. Помните об&nbsp;уместности
+        и&nbsp;не&nbsp;допускайте ошибок.
       </p>
     </div>
+    <!-- (1) Меняем 08.png -> 08.jpg -->
     <figure>
-      <img class="footerImage" src="files/08.jpg" alt="Шинель у Башмачкина">
+      <img class="footerImage" src="files/08.jpg" alt="08.jpg">
       <figcaption class="footerCaption">
         А&nbsp;шинель-то у&nbsp;Башмачкина поюзанная! Сочинение на&nbsp;тему
         столкновение мечты и&nbsp;реальности в&nbsp;повести Н.&nbsp;В.&nbsp;Гоголя&nbsp;«Шинель»
@@ -602,9 +682,11 @@
       <div class="infoBlock">
         <span class="infoLabel">Источники</span>
         <span class="infoText">
-          Библиотека Орфограммки,<br/>
-          therules.ru<br/>
-          Русский&nbsp;язык. Ладыженская&nbsp;Т.&nbsp;А. — Бархударов&nbsp;С.&nbsp;Г. (5–9), 2023–2025&nbsp;г.
+          <a href="https://orfogrammka.ru/%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0/" target="_blank">Библиотека Орфограммки</a>,<br/>
+          <a href="http://therules.ru/" target="_blank">therules.ru</a><br/>
+          <a href="https://prosv.ru/catalog/russkii-yazik-ladizhenskaya-t-a-barhudarov-s-g-5-9/" target="_blank">
+            Русский&nbsp;язык. Ладыженская&nbsp;Т.&nbsp;А. — Бархударов&nbsp;С.&nbsp;Г. (5–9), 2023–2025&nbsp;г.
+          </a>
         </span>
       </div>
     </section>
