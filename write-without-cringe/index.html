@@ -17,7 +17,382 @@
     rel="stylesheet"
   />
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== Reset ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      color: #000;
+      background: #fff;
+      line-height: 1.4;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Variables ===== */
+    :root {
+      --mainWidth: 1000px;  /* Осн. ширина контейнера */
+      --sidePad: 10px;
+      --sectionGap: 100px;
+      --headerBottom: 50px;
+    }
+
+    /* ===== Header ===== */
+    header.siteHeader {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 10px; /* Сверху/снизу/слева/справа = 10px */
+    }
+
+    /* Левая ссылка (иконка + текст) */
+    .headerLeftLink {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+    .headerLeftLink:hover {
+      color: #6A00FF;
+    }
+    .headerLeftLink svg {
+      width: 35px;
+      height: 35px;
+      transition: fill 0.2s ease;
+    }
+    .headerLeftText {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    /* Правая ссылка (Телеграм) */
+    .headerRightLink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 43px;
+      height: 35px;
+      transition: fill 0.2s ease;
+    }
+    .headerRightLink:hover svg path {
+      fill: #6A00FF;
+    }
+
+    /* ===== Main ===== */
+    main.siteMain {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: var(--headerBottom);
+      margin-bottom: 100px;
+    }
+    .mainContainer {
+      width: 100%;
+      max-width: var(--mainWidth);
+      margin: 0 auto;
+      padding-left: var(--sidePad);
+      padding-right: var(--sidePad);
+    }
+
+    /* Общий класс для текстовых блоков (справа 100px, при адаптиве => 10px) */
+    .padRight100 {
+      padding-right: 100px;
+    }
+    @media (max-width: 1020px) {
+      .padRight100 {
+        padding-right: 10px; /* (2) вместо 30px => 10px */
+      }
+    }
+
+    /* ===== Hero ===== */
+    .heroSection {
+      display: flex;
+      flex-direction: column;
+    }
+    .heroTitle {
+      color: #000;
+      font-weight: 900;
+      font-size: 120px;
+      line-height: 80%;
+      letter-spacing: -6px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 1020px) {
+      .heroTitle {
+        font-size: 90px;
+        line-height: 70px;
+        letter-spacing: -3px;
+      }
+    }
+
+    .heroSubtitle {
+      color: #000;
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 45px;
+      letter-spacing: -1.6px;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 1020px) {
+      .heroSubtitle {
+        font-size: 32px;
+        line-height: 28px;
+      }
+    }
+
+    .heroAuthorBlock {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .heroAuthorImg {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    /* (1) "Анна Ревенкова, учитель русского" => 28px, жирный, при адаптиве =>20px жирный */
+    .heroAuthorText {
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 700;
+    }
+    @media (max-width: 1020px) {
+      .heroAuthorText {
+        font-size: 20px; /* (1) адаптив => 20px */
+        line-height: 23px;
+      }
+    }
+
+    /* Текст геро-блока 32->28, line-height:32 => адаптив =>20, line-height:26 */
+    .heroText {
+      color: #000;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 400;
+    }
+    .heroText:not(:last-child) {
+      margin-bottom: 10px; /* Расстояние 10px между абзацами */
+    }
+    .heroText.last {
+      margin-bottom: var(--sectionGap);
+    }
+    @media (max-width: 1020px) {
+      .heroText {
+        font-size: 20px;
+        line-height: 23px;
+      }
+    }
+
+    /* ===== Секции (Articles) ===== */
+    .sectionBlock {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: var(--sectionGap);
+    }
+    .sectionImage {
+      width: 100%;
+      margin: 0 auto;
+    }
+    /* При <=500px меняем src => <picture><source...> */
+    .sectionTitle {
+      color: #000;
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 45px;
+      letter-spacing: -1.6px;
+      margin-top: 40px;
+    }
+    @media (max-width: 1020px) {
+      .sectionTitle {
+        margin-top: 30px;
+        font-size: 32px;
+        line-height: 28px;
+      }
+    }
+
+    /* 32->28 => line-height ~32 */
+    .sectionText {
+      color: #000;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 400;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 1020px) {
+      .sectionText {
+        font-size: 20px;
+        line-height: 23px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* ===== Примеры (две колонки) ===== */
+    .examplesWrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+    }
+    /* 24->20 => examples */
+    .exampleSide {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      font-size: 20px;
+      line-height: 26px;
+    }
+    .exampleSideTitle {
+      margin-bottom: 0;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 26px;
+    }
+    .cringeColor {
+      color: #FF0004;
+    }
+    .likeColor {
+      color: #5DCF00;
+    }
+    .exampleList {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    @media (max-width: 1020px) {
+      .exampleSide {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      .exampleSideTitle {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+
+    /* ===== Футер ===== */
+    footer.siteFooter {
+      width: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .footerContainer {
+      width: 100%;
+      max-width: var(--mainWidth);
+      margin: 0 auto;
+      padding-left: var(--sidePad);
+      padding-right: var(--sidePad);
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .footerTextBlock {
+      display: flex;
+      flex-direction: column;
+      color: #fff;
+    }
+    .footerTitle {
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 45px;
+      letter-spacing: -1.6px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    /* 32->28 => line-height:32 => margin-bottom:50px => pic */
+    .footerParagraph {
+      font-size: 28px;
+      line-height: 32px;
+      color: #fff;
+      font-weight: 400;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 1020px) {
+      .footerTitle {
+        font-size: 32px;
+        line-height: 28px;
+      }
+      .footerParagraph {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 30px;
+      }
+    }
+    .footerImage {
+      border-radius: 28px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .footerCaption {
+      font-size: 24px; 
+      line-height: 26px; 
+      color: #fff; 
+      margin-top: 10px;
+    }
+    .footerInfo {
+      opacity: 0.4;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      color: #fff;
+    }
+    .infoBlock {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .infoLabel {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 26px;
+    }
+    .infoText {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 26px;
+    }
+    .infoText a {
+      color: inherit;
+      transition: color 0.2s ease;
+    }
+    .infoText a:hover {
+      color: #6A00FF;
+    }
+    @media (max-width: 1020px) {
+      .footerCaption,
+      .infoLabel,
+      .infoText {
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+  </style>
 
 </head>
 <body>
