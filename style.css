@@ -1,0 +1,103 @@
+:root {
+            --background-color: #f7dfee;
+            --text-color: #000;
+            --accent-color: #ff006f;
+            --hover-color: #6A00FF;
+            --footer-color: #d7bfce;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter Tight', sans-serif;
+            background-color: var(--background-color);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        .profile-image, .social-icon, .footer-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+        .profile-image {
+            border-radius: 50%;
+        }
+        .social-icon {
+            cursor: pointer;
+        }
+        .social-icon path {
+            fill: var(--accent-color);
+        }
+        .social-icon:hover path {
+            fill: var(--hover-color);
+        }
+        .about-content {
+            margin: 0 auto 50px;
+            text-align: left;
+        }
+        .intro-text, .work-description, .work-link {
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+        .intro-text {
+            margin-bottom: 20px;
+        }
+        .work-link {
+            display: block;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .work-link:hover, .work-link:focus {
+            color: var(--hover-color);
+        }
+        .footer {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: auto;
+            color: var(--footer-color);
+            font-weight: 600;
+        }
+        @media (min-width: 1200px) {
+            .intro-text, .work-description, .work-link, .footer {
+                font-size: 48px;
+            }
+            .about-content {
+                max-width: 1200px;
+            }
+        }
+        @media (max-width: 1199px) {
+            .intro-text, .work-description, .work-link, .footer {
+                font-size: 32px;
+            }
+            .about-content {
+                max-width: 800px;
+            }
+        }
+        @media (max-width: 799px) {
+            .intro-text, .work-description, .work-link, .footer {
+                font-size: 24px;
+            }
+            .about-content {
+                max-width: 600px;
+            }
+            .profile-image, .social-icon, .footer-image {
+                width: 50px;
+                height: 50px;
+            }
+        }
+        @media (max-width: 399px) {
+            .intro-text, .work-description, .work-link, .footer {
+                font-size: 16px;
+            }
+        }
