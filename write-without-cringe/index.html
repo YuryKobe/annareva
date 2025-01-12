@@ -164,8 +164,8 @@
       margin-bottom: 10px;
     }
     .heroAuthorImg {
-      width: 35px;
-      height: 35px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
     }
 
@@ -247,50 +247,83 @@
       }
     }
 
-    /* ===== Примеры (две колонки) ===== */
-    .examplesWrapper {
-      display: flex;
-      flex-direction: row;
-      gap: 30px;
-    }
-    /* 24->20 => examples */
-    .exampleSide {
-      flex: 1 1 0;
+    /* Примеры Кринж и Лайк */
+    .examplesPairs {
       display: flex;
       flex-direction: column;
-      font-size: 20px;
-      line-height: 26px;
+      margin-bottom: 30px; /* 30px снизу всего блока (перед тестом) */
     }
-    .exampleSideTitle {
-      margin-bottom: 0;
-      font-size: 20px;
+
+    /* Шапка: "Кринж" / "Лайк" */
+    .exampleRowHead {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      /* Размер шрифта (24→20 на адаптиве) */
+      font-size: 24px;
       font-weight: 700;
-      line-height: 26px;
+      line-height: 28px;
+      margin: 0; /* без отступа снизу */
     }
-    .cringeColor {
-      color: #FF0004;
+
+    /* Заголовки внутри шапки: красный (Кринж) и зелёный (Лайк) */
+    .headCringe {
+      color: #FF0004; 
+      flex: 1 1 0; 
+      margin: 0; 
+      text-align: left;
     }
-    .likeColor {
-      color: #5DCF00;
-    }
-    .exampleList {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .headLike {
+      color: #5DCF00; 
+      flex: 1 1 0;
       margin: 0;
-      padding: 0;
+      text-align: left;
     }
+
+    /* Каждая строка (неправильный / правильный) */
+    .exampleRow {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-direction: row;
+      margin-bottom: 10px; /* По умолчанию 10px сверху */
+      /* Так между строками будет 10px 
+         исключая первую строку, 
+         у которой переопределим ниже */
+    }
+
+
+    /* Левый (кринж) и правый (лайк) тексты примеров:
+       цвет чёрный, 24px -> 20px адаптив 
+    */
+    .exampleCringe,
+    .exampleLike {
+      flex: 1 1 0; 
+      color: #000; 
+      font-size: 24px;
+      font-weight: 400; 
+      line-height: 28px;
+      margin: 0; 
+      text-align: left;
+    }
+
+    /* ====== Адаптив (<= 1020px) ====== */
     @media (max-width: 1020px) {
-      .exampleSide {
-        font-size: 16px;
-        line-height: 19px;
+      .exampleRowHead {
+        font-size: 20px;
+        line-height: 24px;
       }
-      .exampleSideTitle {
-        font-size: 16px;
-        line-height: 22px;
+      .headCringe, .headLike {
+        font-size: 20px;
+        line-height: 24px;
+      }
+      .exampleCringe,
+      .exampleLike {
+        font-size: 20px; 
+        line-height: 24px;
       }
     }
+
 
     /* ===== Футер ===== */
     footer.siteFooter {
@@ -577,21 +610,26 @@
           только «в&nbsp;общем» и «вообще».
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Вообщем, я&nbsp;понял, что ничего не&nbsp;понял.</li>
-            <li>Вобщем, жизнь — это мем, а&nbsp;мы в&nbsp;нём смеёмся.</li>
-          </ul>
+      <div class="examplesPairs padRight100">
+
+        <!-- Заголовок двух колонок -->
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>В&nbsp;общем, я&nbsp;ничего не&nbsp;понял, но&nbsp;это тоже результат.</li>
-            <li>Вообще, смысл жизни — это сидеть в&nbsp;чате и&nbsp;кидать мемы.</li>
-          </ul>
+
+        <!-- Пара №1 -->
+        <div class="exampleRow">
+          <span class="exampleCringe">Вообщем, я понял, что ничего не понял.</span>
+          <span class="exampleLike">В общем, я ничего не понял, но это тоже результат.</span>
         </div>
+
+        <!-- Пара №2 -->
+        <div class="exampleRow">
+          <span class="exampleCringe">Вобщем, жизнь — это мем.</span>
+          <span class="exampleLike">Вообще, смысл жизни — это сидеть в чате и кидать мемы.</span>
+        </div>
+
       </div>
       <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
         <h4 class="testQuestionTitle">Как лучше написать сообщение?</h4>
@@ -637,21 +675,23 @@
           Если глагол отвечает на вопрос «что&nbsp;делает?», пишите ТСЯ: целуется.
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Нам нужно договорится, кто будет отвечать за&nbsp;баги, а&nbsp;кто — за&nbsp;мемы.</li>
-            <li>Я&nbsp;пытался подключится, а&nbsp;оказалось, что&nbsp;интернет не&nbsp;подключается.</li>
-          </ul>
+      <div class="examplesPairs padRight100">
+
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>Нам нужно договориться, кто будет отвечать за&nbsp;баги, а&nbsp;кто — раздавать смешнявки в&nbsp;чат.</li>
-            <li>Я&nbsp;пытался зарегистрироваться, а&nbsp;оказалось, что&nbsp;система не&nbsp;хочет регистрироваться.</li>
-          </ul>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Нам нужно договорится, кто будет отвечать за баги, а кто — за мемы.</span>
+          <span class="exampleLike">Нам нужно договориться, кто будет отвечать за баги, а кто — раздавать смешнявки в чат.</span>
         </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Я пытался подключится, а оказалось, что интернет не подключается.</span>
+          <span class="exampleLike">Я пытался зарегистрироваться, а оказалось, что система не хочет регистрироваться.</span>
+        </div>
+
       </div>
       <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
         <h4 class="testQuestionTitle">Как правильно завершить фразу: «Если кто-то говорит “спс” вместо “спасибо”, мне хочется …»</h4>
@@ -696,26 +736,32 @@
           пишите букву Е: нéчего, а без ударения — И: ничегó. И всегда слитно.
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Нечего не&nbsp;понял, но&nbsp;очень интересно.</li>
-            <li>Ни-че-го не&nbsp;говори!</li>
-            <li>И&nbsp;даже так бывало: ко&nbsp;мне на&nbsp;День&nbsp;рождения некто не&nbsp;приходил.</li>
-            <li>Это Склисс! Он не&nbsp;чей.</li>
-          </ul>
+      <div class="examplesPairs padRight100">
+
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>И&nbsp;вдруг! Некто появился на&nbsp;пороге.</li>
-            <li>Ничей комментарий уже не&nbsp;мог остановить его.</li>
-          </ul>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Нечего не понял, но очень интересно.</span>
+          <span class="exampleLike">И вдруг! Некто появился на пороге.</span>
         </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">И даже так бывало: ко мне на День рождения некто не приходил.</span>
+          <span class="exampleLike">Ни-че-го не говори!</span> 
+          
+        </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Это Склисс! Он не чей.</span>
+          <span class="exampleLike">Ничей комментарий уже не мог остановить его.</span>
+        </div>
+
       </div>
       <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
-        <h4 class="testQuestionTitle">Кто-то оъяснил ему этот мем?</h4>
+        <h4 class="testQuestionTitle">Кто-то объяснил ему этот мем?</h4>
         <ul class="testOptionsList">
           <!-- Вариант 1 -->
           <li class="testOption" data-correct="true">
@@ -763,22 +809,26 @@
           Остальные слова пишите слитно: полночи, полчаса.
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Пол-дня смотрел сериалы, а&nbsp;потом вспомнил про&nbsp;дедлайн.</li>
-            <li>Полинтернета смеётся над&nbsp;этим мемом, а&nbsp;я&nbsp;не&nbsp;в&nbsp;теме.</li>
-            <li>Пол апельсина съел, а&nbsp;вторую забыл.</li>
-          </ul>
+      <!-- Примеры -->
+      <div class="examplesPairs padRight100">
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>Полдня искал вдохновение, а&nbsp;потом решил ничего не&nbsp;делать.</li>
-            <li>Пол-интернета уже носит эти странные кроксы, а&nbsp;я&nbsp;всё ещё пытаюсь понять, зачем.</li>
-            <li>Пол-апельсина почистил, а&nbsp;на&nbsp;вторую половину сил уже не&nbsp;хватило.</li>
-          </ul>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Пол-дня смотрел сериалы, а потом вспомнил про дедлайн.</span>
+          <span class="exampleLike">Полдня искал вдохновение, а потом решил ничего не делать.</span>
+        </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Полинтернета смеётся над этим мемом, а я не в теме.</span>
+          <span class="exampleLike">Пол-интернета уже носит эти странные кроксы, а я всё ещё пытаюсь понять, зачем.</span>
+        </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Пол апельсина съел, а вторую забыл.</span>
+          <span class="exampleLike">Пол-апельсина почистил, а на вторую половину сил уже не хватило.</span>
         </div>
       </div>
       <!-- Тест -->
@@ -806,38 +856,44 @@
       </div>
     </article>
 
-    <!-- 5. «Чтобы» -->
+    <!-- 5. «Что бы» -->
     <article class="sectionBlock">
       <picture>
         <source srcset="files/06-mobile.svg" media="(max-width: 500px)">
         <img class="sectionImage" src="files/06.svg" alt="Чтобы">
       </picture>
-      <h3 class="sectionTitle padRight100">«Чтобы»</h3>
+      <h3 class="sectionTitle padRight100">«Что бы»</h3>
       <div class="padRight100">
         <p class="sectionText">
           Слетает фокус у&nbsp;многих: когда слитно, а&nbsp;когда раздельно? Чтобы ваши сообщения
-          выглядели топово, запомните: пишите слитно, когда слово выражает цель или причину:
+          выглядели топово, запомните: пишите слитно, когда слово выражает цель или&nbsp;причину:
           Посмотрю этот фильм, чтобы выплакаться. Пишите раздельно для усиления вопроса:
           Что&nbsp;бы такого посмотреть? Частица БЫ опускается без&nbsp;потери смысла.
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Я&nbsp;записал правило, что&nbsp;бы вы&nbsp;не&nbsp;путались.</li>
-            <li>Чтобы&nbsp;мне ещё написать про&nbsp;зумеров?</li>
-            <li>Я&nbsp;пришёл, что&nbsp;бы остаться.</li>
-          </ul>
+
+      <div class="examplesPairs padRight100">
+
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>Я&nbsp;заказал продуктов, чтобы приготовить обед.</li>
-            <li>Что&nbsp;бы вы&nbsp;хотели на&nbsp;ужин?</li>
-            <li>Я&nbsp;уходила, чтобы&nbsp;вернуться.</li>
-          </ul>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Я записал правило, что бы вы не путались.</span>
+          <span class="exampleLike">Я заказал продуктов, чтобы приготовить обед.</span>
         </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Чтобы мне ещё написать про зумеров?</span>
+          <span class="exampleLike">Что бы вы хотели на ужин?</span>
+        </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Я пришёл, что бы остаться.</span>
+          <span class="exampleLike">Я уходила, чтобы вернуться.</span>
+        </div>
+
       </div>
       <!-- Тест -->
       <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
@@ -878,23 +934,28 @@
           — это смертельная ошибка.
         </p>
       </div>
-      <div class="examplesWrapper padRight100">
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
-          <ul class="exampleList">
-            <li>Решил по&nbsp;говорить, но&nbsp;на&nbsp;полуслове закрыл чат.</li>
-            <li>Надо по&nbsp;думать, как выжить до&nbsp;зарплаты.</li>
-            <li>Хочу по&nbsp;работать, но&nbsp;мемы мешают.</li>
-          </ul>
+      <div class="examplesPairs padRight100">
+
+        <div class="exampleRowHead">
+          <span class="headCringe">Кринж</span>
+          <span class="headLike">Лайк</span>
         </div>
-        <div class="exampleSide">
-          <h4 class="exampleSideTitle likeColor">Лайк</h4>
-          <ul class="exampleList">
-            <li>Решил поговорить с&nbsp;ней, но&nbsp;она всё равно прочитала сообщение и&nbsp;не&nbsp;ответила.</li>
-            <li>Надо подумать, но&nbsp;что там думать?</li>
-            <li>Сегодня нужно поработать, а&nbsp;завтра просто мемы.</li>
-          </ul>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Решил по говорить, но на полуслове закрыл чат.</span>
+          <span class="exampleLike">Решил поговорить с ней, но она всё равно не ответила.</span>
         </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Надо по думать, как выжить до зарплаты.</span>
+          <span class="exampleLike">Надо подумать, но что там думать?</span>
+        </div>
+
+        <div class="exampleRow">
+          <span class="exampleCringe">Хочу по работать, но мемы мешают.</span>
+          <span class="exampleLike">Сегодня нужно поработать, а завтра просто мемы.</span>
+        </div>
+
       </div>
       <!-- Тест -->
       <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
