@@ -392,6 +392,128 @@
         line-height: 22px;
       }
     }
+    /* ===== TEST BLOCK STYLES ===== */
+
+    /* Заголовок вопроса */
+    .testQuestionTitle {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 32px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 1020px) {
+      .testQuestionTitle {
+        font-size: 20px; /* было 28px -> 20px */
+        line-height: 23px; /* подберите под 20px, например 26px */
+      }
+    }
+
+    /* Список вариантов (убираем буллеты, отступы) */
+    .testOptionsList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Каждый вариант */
+    .testOption {
+      cursor: pointer;
+      padding: 20px;
+      background: #F4F4F5;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.2s ease;
+    }
+
+    /* Ховер-эффект (фон при наведении) */
+    .testOption:hover {
+      background: #E5E5E8; /* можно чуть темнее #F4F4F5 */
+    }
+
+    /* Кружочек слева (по умолчанию белый) */
+    .optionCircle {
+      width: 26px;
+      height: 26px;
+      background: #fff;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Текст варианта */
+    .optionText {
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #000;
+    }
+    @media (max-width: 1020px) {
+      .optionText {
+        font-size: 20px;
+        line-height: 23px;
+      }
+    }
+
+    /* 
+      Когда вариант неправильный (при клике):
+      - можно добавить класс .optionWrong, 
+      - фон: rgba(255, 0, 0, 0.1)
+      - кружок красный (#FF0000)
+      - текст красный (#FF0000)
+      - + анимация shake
+    */
+    .optionWrong {
+      background: rgba(255, 0, 0, 0.1) !important;
+      animation: shake 0.3s;
+    }
+    .optionWrong .optionCircle {
+      background: #FF0000 !important;
+    }
+    .optionWrong .optionText {
+      color: #FF0000 !important;
+    }
+
+    /* Когда вариант правильный (при клике):
+       - можно добавить класс .optionRight,
+       - фон: rgba(93,207,0, 0.1) => #5DCF00 ~ #5DCf00
+       - кружок зелёный
+       - текст зелёный
+    */
+    .optionRight {
+      background: rgba(93, 207, 0, 0.1) !important;
+    }
+    .optionRight .optionCircle {
+      background: #5DCF00 !important;
+    }
+    .optionRight .optionText {
+      color: #5DCF00 !important;
+    }
+
+    /* Анимация покачивания (shake) */
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-4px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* 
+      Если вариант уже выбран, 
+      остальные .testOption можно заблокировать 
+      через .disabled (pointer-events:none; opacity:0.5;) 
+      или JS. 
+    */
+    .disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
   </style>
 </head>
 <body>
@@ -471,6 +593,33 @@
           </ul>
         </div>
       </div>
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Как лучше написать сообщение?</h4>
+
+        <!-- Набор вариантов (3 шт). 
+             "data-correct"="true" или "false" можно использовать 
+             для JS, чтобы определить правильность. 
+        -->
+        <ul class="testOptionsList">
+          <!-- Вариант 1 (неправильный) -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Вообщем, я пас</span>
+          </li>
+
+          <!-- Вариант 2 (правильный) -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">В общем, я пас</span>
+          </li>
+
+          <!-- Вариант 3 (неправильный) -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Вобщем, я пас</span>
+          </li>
+        </ul>
+      </div>
     </article>
 
     <!-- 2. «Прокачатся» -->
@@ -503,6 +652,33 @@
             <li>Я&nbsp;пытался зарегистрироваться, а&nbsp;оказалось, что&nbsp;система не&nbsp;хочет регистрироваться.</li>
           </ul>
         </div>
+      </div>
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Как правильно завершить фразу: «Если кто-то говорит “спс” вместо “спасибо”, мне хочется …»</h4>
+
+        <!-- Набор вариантов (3 шт). 
+             "data-correct"="true" или "false" можно использовать 
+             для JS, чтобы определить правильность. 
+        -->
+        <ul class="testOptionsList">
+          <!-- Вариант 1 (неправильный) -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">возмутиться</span>
+          </li>
+
+          <!-- Вариант 2 (правильный) -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">возмутица</span>
+          </li>
+
+          <!-- Вариант 3 (неправильный) -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">возмутиься</span>
+          </li>
+        </ul>
       </div>
     </article>
 
@@ -537,6 +713,44 @@
             <li>Ничей комментарий уже не&nbsp;мог остановить его.</li>
           </ul>
         </div>
+      </div>
+      <div class="examplesWrapper padRight100">
+        <div class="exampleSide">
+          <h4 class="exampleSideTitle cringeColor">Кринж</h4>
+          <ul class="exampleList">
+            <li>Нам нужно договорится, кто будет отвечать за&nbsp;баги, а&nbsp;кто — за&nbsp;мемы.</li>
+            <li>Я&nbsp;пытался подключится, а&nbsp;оказалось, что&nbsp;интернет не&nbsp;подключается.</li>
+          </ul>
+        </div>
+        <div class="exampleSide">
+          <h4 class="exampleSideTitle likeColor">Лайк</h4>
+          <ul class="exampleList">
+            <li>Нам нужно договориться, кто будет отвечать за&nbsp;баги, а&nbsp;кто — раздавать смешнявки в&nbsp;чат.</li>
+            <li>Я&nbsp;пытался зарегистрироваться, а&nbsp;оказалось, что&nbsp;система не&nbsp;хочет регистрироваться.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Кто-то оъяснил ему этот мем?</h4>
+        <ul class="testOptionsList">
+          <!-- Вариант 1 -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">Никто не объяснил мне этот мем</span>
+          </li>
+
+          <!-- Вариант 2 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Некто не объяснил мне этот мем</span>
+          </li>
+
+          <!-- Вариант 3 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Не кто не объяснил мне этот мем</span>
+          </li>
+        </ul>
       </div>
     </article>
 
@@ -583,6 +797,29 @@
           </ul>
         </div>
       </div>
+      <!-- Тест -->
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Как написать про минуту?</h4>
+        <ul class="testOptionsList">
+          <!-- Вариант 1 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Пол-минуты ждал, а потом сдался.</span>
+          </li>
+
+          <!-- Вариант 2 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Пол минуты ждал, а потом сдался.</span>
+          </li>
+
+          <!-- Вариант 3 -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">Полминуты ждал, а потом сдался.</span>
+          </li>
+        </ul>
+      </div>
     </article>
 
     <!-- 5. «Чтобы» -->
@@ -618,6 +855,29 @@
           </ul>
         </div>
       </div>
+      <!-- Тест -->
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Зачем мы заводим будильники?</h4>
+        <ul class="testOptionsList">
+          <!-- Вариант 1 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Я завел будильник, что бы не проспать лекцию по мемологии.</span>
+          </li>
+
+          <!-- Вариант 2 -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">Я завел будильник, чтобы не проспать лекцию по мемологии.</span>
+          </li>
+
+          <!-- Вариант 3 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Я завел будильник, что б не проспать лекцию по мемологии.</span>
+          </li>
+        </ul>
+      </div>
     </article>
 
     <!-- 6. «По ехать» -->
@@ -651,6 +911,29 @@
             <li>Сегодня нужно поработать, а&nbsp;завтра просто мемы.</li>
           </ul>
         </div>
+      </div>
+      <!-- Тест -->
+      <div class="testBlock" style="margin-top: 30px; margin-bottom: 30px;">
+        <h4 class="testQuestionTitle">Так как правильно?</h4>
+        <ul class="testOptionsList">
+          <!-- Вариант 1 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Давайте по играем, пока сервер не упал.</span>
+          </li>
+
+          <!-- Вариант 2 -->
+          <li class="testOption" data-correct="true">
+            <span class="optionCircle"></span>
+            <span class="optionText">Давайте поиграем, пока сервер не упал.</span>
+          </li>
+
+          <!-- Вариант 3 -->
+          <li class="testOption" data-correct="false">
+            <span class="optionCircle"></span>
+            <span class="optionText">Давайте по-играем, пока сервер не упал.</span>
+          </li>
+        </ul>
       </div>
     </article>
 
@@ -697,6 +980,34 @@
     </section>
   </div>
 </footer>
+<script>
+  document.querySelectorAll('.testOptionsList').forEach(list => {
+    const options = list.querySelectorAll('.testOption');
+    let isAnswered = false;
 
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        if (isAnswered) return;
+
+        const isCorrect = opt.dataset.correct === 'true';
+
+        if (isCorrect) {
+          opt.classList.add('optionRight');
+        } else {
+          opt.classList.add('optionWrong');
+        }
+
+        // Блокируем только варианты В ЭТОМ list
+        options.forEach(o => {
+          if (o !== opt) {
+            o.classList.add('disabled');
+          }
+        });
+
+        isAnswered = true;
+      });
+    });
+  });
+</script>
 </body>
 </html>
