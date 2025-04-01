@@ -10,7 +10,7 @@
       font-family: 'Inter', sans-serif;
       color: #000;
       background: #fff;
-      line-height: 1.4;
+      line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: geometricPrecision;
@@ -109,15 +109,15 @@
     .heroTitle {
       color: #000;
       font-weight: 900;
-      font-size: 120px;
+      font-size: 100px;
       line-height: 80%;
       letter-spacing: -6px;
       margin-bottom: 20px;
     }
     @media (max-width: 1020px) {
       .heroTitle {
-        font-size: 90px;
-        line-height: 70px;
+        font-size: 80px;
+        line-height: 80%;
         letter-spacing: -3px;
       }
     }
@@ -126,14 +126,14 @@
       color: #000;
       font-size: 54px;
       font-weight: 700;
-      line-height: 45px;
+      line-height: 48px;
       letter-spacing: -1.6px;
       margin-bottom: 50px;
     }
     @media (max-width: 1020px) {
       .heroSubtitle {
         font-size: 32px;
-        line-height: 28px;
+        line-height: 30px;
       }
     }
 
@@ -166,7 +166,7 @@
     .heroText {
       color: #000;
       font-size: 28px;
-      line-height: 32px;
+      line-height: 34px;
       font-weight: 400;
     }
     .heroText:not(:last-child) {
@@ -178,7 +178,7 @@
     @media (max-width: 1020px) {
       .heroText {
         font-size: 20px;
-        line-height: 23px;
+        line-height: 24px;
       }
     }
 
@@ -197,7 +197,7 @@
       color: #000;
       font-size: 54px;
       font-weight: 700;
-      line-height: 45px;
+      line-height: 48px;
       letter-spacing: -1.6px;
       margin-top: 40px;
     }
@@ -213,7 +213,7 @@
     .sectionText {
       color: #000;
       font-size: 28px;
-      line-height: 32px;
+      line-height: 34px;
       font-weight: 400;
       margin-top: 20px;
       margin-bottom: 30px;
@@ -221,7 +221,7 @@
     @media (max-width: 1020px) {
       .sectionText {
         font-size: 20px;
-        line-height: 23px;
+        line-height: 24px;
         margin-top: 10px;
         margin-bottom: 20px;
       }
@@ -264,11 +264,11 @@
     @media (max-width: 1020px) {
       .exampleSide {
         font-size: 16px;
-        line-height: 19px;
+        line-height: 20px;
       }
       .exampleSideTitle {
         font-size: 16px;
-        line-height: 22px;
+        line-height: 20px;
       }
     }
 
@@ -300,7 +300,7 @@
     .footerTitle {
       font-size: 54px;
       font-weight: 700;
-      line-height: 45px;
+      line-height: 48px;
       letter-spacing: -1.6px;
       color: #fff;
       margin-bottom: 20px;
@@ -308,7 +308,7 @@
     /* 32->28 => line-height:32 => margin-bottom:50px => pic */
     .footerParagraph {
       font-size: 28px;
-      line-height: 32px;
+      line-height: 34px;
       color: #fff;
       font-weight: 400;
       margin-bottom: 50px;
@@ -331,7 +331,7 @@
     }
     .footerCaption {
       font-size: 24px; 
-      line-height: 26px; 
+      line-height: 29px; 
       color: #fff; 
       margin-top: 10px;
     }
@@ -350,12 +350,12 @@
     .infoLabel {
       font-size: 24px;
       font-weight: 700;
-      line-height: 26px;
+      line-height: 27px;
     }
     .infoText {
       font-size: 24px;
       font-weight: 400;
-      line-height: 26px;
+      line-height: 27px;
     }
     .infoText a {
       color: inherit;
