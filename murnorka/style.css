@@ -67,7 +67,7 @@ a:hover {
 .header__cart,
 .footer__logo,
 .footer__social a {
-  font: 500 var(--logo-size)/1 'Spectral', serif;
+  font: 500 var(--logo-size)/42px 'Spectral', serif;
   letter-spacing: -0.8px;
 }
 
@@ -168,9 +168,8 @@ a:hover {
 }
 
 .product__price {
-  font: 400 var(--price-size)/1 'Spectral', serif;
+  font: 400 var(--price-size)/80px 'Spectral', serif;
   letter-spacing: -1.6px;
-  line-height: 80px;
   white-space: nowrap;
   margin-bottom: 4px;
 }
