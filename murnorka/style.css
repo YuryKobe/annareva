@@ -1,6 +1,7 @@
 :root {
   --gap: 20px;
   --small-gap: 10px;
+  --product-gap: 60px;
   --logo-size: 40px;
   --menu-size: 24px;
   --body-font: 24px/27px 'Spectral', serif;
@@ -22,7 +23,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-kerning: normal;
-  font-feature-settings: "kern";
+  font-feature-settings: "kern" 1;
   text-rendering: optimizeLegibility;
 }
 
@@ -32,7 +33,6 @@ body {
   font: var(--body-font);
 }
 
-/* Сброс стилей для ссылок */
 a {
   color: var(--black);
   text-decoration: none;
@@ -51,7 +51,6 @@ a:hover {
   gap: var(--gap);
 }
 
-/* Шапка */
 .header {
   display: flex;
   flex-direction: column;
@@ -64,8 +63,11 @@ a:hover {
   align-items: center;
 }
 
-.logo {
-  font: 500 var(--logo-size)/42px 'Spectral', serif;
+.logo,
+.header__cart,
+.footer__logo,
+.footer__social a {
+  font: 500 var(--logo-size)/1 'Spectral', serif;
   letter-spacing: -0.8px;
 }
 
@@ -96,77 +98,61 @@ a:hover {
   color: var(--white); 
 }
 
-/* Текущий пункт меню без эффектов */
+.nav__link--primary:hover:not(.nav__link--current) {
+  color: var(--white);
+  background: var(--hover-color);
+}
+
 .nav__link--current {
   background: var(--black); 
   color: var(--white); 
   cursor: default;
 }
 
-.nav__link--primary:hover:not(.nav__link--current) {
-  color: var(--white);
-  background: var(--hover-color);
-}
-
-.header__cart {
-  font: 500 var(--logo-size)/42px 'Spectral', serif;
-  letter-spacing: -0.8px;
-}
-
-/* Информация о продукте */
 .product-info {
-  padding: 100px 0 40px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
+  margin: 100px 0 60px;
 }
 
 .product-info__title {
   font: 800 var(--title-size)/1 'Inter', sans-serif;
   letter-spacing: -3px;
+  margin-bottom: var(--gap);
 }
 
 .product-info__description {
   max-width: 900px;
 }
 
-/* Сетка продуктов */
 .products {
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
-  margin-top: var(--gap);
+  gap: var(--product-gap);
 }
 
 .product-grid {
   display: flex;
   flex-direction: column;
-  gap: var(--gap);
+  gap: var(--product-gap);
 }
 
 .product {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   cursor: pointer;
 }
 
-/* Эффект при наведении на карточку */
+.product:hover .product__img-container {
+  background-color: var(--hover-color) !important;
+}
+
 .product:hover .product__price {
   color: var(--hover-color);
 }
 
-/* Контейнер для изображений */
 .product__img-container {
-  position: relative;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-}
-
-/* Изменение фона контейнера при наведении */
-.product:hover .product__img-container {
-  background-color: var(--hover-color) !important;
+  overflow: hidden;
+  margin-bottom: 16px;
 }
 
 .product__img {
@@ -174,26 +160,11 @@ a:hover {
   height: 100%;
   display: block;
   object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.product__img-fallback {
-  width: 100%;
-  display: block;
 }
 
 .product__details {
-  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-}
-
-.product__price-container {
-  display: flex;
-  gap: var(--small-gap);
 }
 
 .product__price {
@@ -201,33 +172,31 @@ a:hover {
   letter-spacing: -1.6px;
   line-height: 80px;
   white-space: nowrap;
+  margin-bottom: 4px;
 }
 
 .product__info {
   padding-right: 30px;
 }
 
-/* Стили для названий товаров */
-.product__name {
+.product__info h2 {
   font-family: 'Spectral', serif;
   font-size: 24px;
-  font-style: normal;
   font-weight: 800;
   line-height: 27px;
   color: var(--black);
 }
 
-/* Подвал */
+.product__info p {
+  font: var(--body-font);
+  font-weight: 400;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-top: 200px;
-}
-
-.footer__logo {
-  font: 500 var(--logo-size)/42px 'Spectral', serif;
-  letter-spacing: -0.8px;
+  margin-top: 240px;
 }
 
 .footer__social {
@@ -235,24 +204,10 @@ a:hover {
   gap: var(--small-gap);
 }
 
-.footer__social a {
-  font: 500 var(--logo-size)/42px 'Spectral', serif;
-  letter-spacing: -0.8px;
-}
-
-/* Аспект-рацио */
 .img-square { aspect-ratio: 1/1; }
 .img-portrait { aspect-ratio: 2/3; }
 
-/* Цвета фона */
-.bg-grey { background-color: #ABACAC; }
-.bg-teal { background-color: #3B8C8F; }
-.bg-green { background-color: #3FB16B; }
-.bg-yellow { background-color: #B1A93F; }
-.bg-brown { background-color: #8F483B; }
-
-/* Стили для десктопа (1000px и выше) */
-@media (min-width: 1000px) {
+@media (min-width: 960px) {
   .product-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -263,20 +218,20 @@ a:hover {
     grid-column: span 4;
   }
   
-  .small-col {
+  .products-group {
     grid-column: span 2;
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    gap: var(--product-gap);
   }
   
-  .row2 {
+  .products-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: var(--gap);
   }
   
-  .row2 .product {
+  .products-row .product {
     grid-column: span 3;
   }
   
@@ -286,8 +241,7 @@ a:hover {
   }
 }
 
-/* Переключение логотипа при < 1000px */
-@media (max-width: 999px) {
+@media (max-width: 959px) {
   .logo-full { display: none; }
   .logo-short { display: inline; }
   
@@ -298,4 +252,11 @@ a:hover {
   
   .footer__logo .logo-full { display: none; }
   .footer__logo .logo-short { display: inline; }
+  
+  .products-group,
+  .products-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--product-gap);
+  }
 }
