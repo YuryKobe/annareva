@@ -18,10 +18,6 @@
   padding: 0; 
 }
 
-html, body {
-  height: 100%;
-}
-
 body { 
   background: var(--white); 
   color: var(--black); 
