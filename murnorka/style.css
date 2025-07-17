@@ -4,7 +4,7 @@
   --product-gap: 60px;
   --logo-size: 40px;
   --menu-size: 24px;
-  --title-size: 60px;
+  --title-size: 100px;
   --price-size: 80px;
   --container-max: 1600px;
   --black: #000;
@@ -109,7 +109,7 @@ a:hover {
   margin: 100px 0 60px;
 }
 
-.product-info__title {
+h1 {
   font: 800 var(--title-size)/1 'Inter', sans-serif;
   letter-spacing: -3px;
   margin-bottom: var(--gap);
@@ -138,7 +138,7 @@ a:hover {
 }
 
 .product:hover .product__img-container {
-  background-color: var(--hover-color) !important; /* Перебивка инлайна */
+  background-color: var(--hover-color); /* Перебивка инлайна */
 }
 
 .product:hover .product__price {
@@ -180,6 +180,8 @@ a:hover {
 h2 {
   font-weight: 800;
   font-size: 24px; /* Сброс */
+    margin-block: 0; /* Сброс */
+  margin-inline: 0; /* Сброс */
 }
 
 .footer {
@@ -225,17 +227,13 @@ h2 {
     grid-column: span 3;
   }
   
-  .product-info__title { 
-    font-size: 100px; 
-    letter-spacing: -5px; 
-  }
 }
 
 @media (max-width: 959px) {
   .logo-full { display: none; }
   .logo-short { display: inline; }
   
-  .product-info__title { 
+  h1 { 
     font-size: 60px; 
     line-height: 1;
   }
