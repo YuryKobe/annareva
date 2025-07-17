@@ -111,7 +111,7 @@ a:hover {
 
 h1 {
   font: 800 var(--title-size)/1 'Inter', sans-serif;
-  letter-spacing: -3px;
+  letter-spacing: -5px;
   margin-bottom: var(--gap);
 }
 
